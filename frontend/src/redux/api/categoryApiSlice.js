@@ -38,3 +38,4 @@ export const {
   useDeleteCategoryMutation,
   useFetchCategoriesQuery,
 } = categoryApiSlice;
+ 
