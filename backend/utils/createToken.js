@@ -5,11 +5,16 @@ const generateToken = (res, userId) => {
     expiresIn: "30d",
   });
 
-  // Set JWT as an HTTP-Only Cookie
+  // Set JWT as an HTTP-Only Cookie.
+  // In production the frontend (Vercel) and backend (Render) live on different
+  // domains, so the cookie must be SameSite=None + Secure to be sent cross-site.
+  // Locally over http://localhost, Secure=None is not allowed, so use Lax there.
+  const isProd = process.env.NODE_ENV === "production";
+
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== "development",
-    sameSite: "strict",
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 

@@ -3,6 +3,7 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // Utilities & Routes
 import connectDB from "./config/db.js";
@@ -18,6 +19,20 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+
+// CORS — the frontend runs on a different domain in production (Vercel vs
+// Render), so the exact origin must be allowlisted and credentials enabled
+// for the auth cookie to be sent with each request.
+const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:5173")
+  .split(",")
+  .map((origin) => origin.trim());
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 // Middlewares
 app.use(express.json());
