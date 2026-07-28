@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page: #f4efe7;
+    --ink: #2b2621;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--page);
+    color: var(--ink);
+    font-family: "Karla", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "kern" 1;
+  }
+
+  /* Paper grain — keeps large sand fields from reading as flat CSS colour */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "SOFT" 30, "WONK" 1;
+    letter-spacing: -0.015em;
+    color: #2b2621;
+  }
+
+  ::selection {
+    background: #e5bfa8;
+    color: #2b2621;
+  }
+
+  .tnum,
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid #b8552f;
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f4efe7;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ddd0bd;
+    border: 3px solid #f4efe7;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9b79e;
+  }
+}
+
+@layer components {
+  .u-container {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12;
+  }
+
+  .u-label {
+    @apply text-[11px] font-semibold uppercase tracking-label text-ink-faint;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full text-[15px] font-medium
+           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-clay-500 px-7 py-3 text-sand-50 hover:bg-clay-600 active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply btn border border-ink/20 px-7 py-3 text-ink hover:border-ink hover:bg-ink hover:text-sand-50 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn px-4 py-2 text-ink-soft hover:text-clay-500;
+  }
+  .btn-danger {
+    @apply btn bg-rust px-6 py-2.5 text-sand-50 hover:brightness-110 active:scale-[0.98];
+  }
+  .btn-sm {
+    @apply px-5 py-2 text-sm;
+  }
+
+  /* Inputs */
+  .field {
+    @apply w-full rounded-md border border-sand-400 bg-sand-50 px-4 py-3 text-[15px] text-ink
+           placeholder:text-ink-faint transition-colors duration-150
+           focus:border-clay-400 focus:outline-none focus:ring-2 focus:ring-clay-500/15;
+  }
+  .field-label {
+    @apply mb-2 block text-[13px] font-semibold text-ink-soft;
+  }
+
+  .card {
+    @apply rounded-lg border border-sand-400 bg-sand-50;
+  }
+
+  /* Link with a rule that draws in on hover */
+  .link-underline {
+    @apply relative inline-block text-ink transition-colors hover:text-clay-500
+           after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-clay-500
+           after:transition-[width] after:duration-300 hover:after:w-full;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider;
+  }
+}

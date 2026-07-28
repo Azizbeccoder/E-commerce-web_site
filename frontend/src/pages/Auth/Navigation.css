@@ -1,0 +1,69 @@
+/* Carousel (react-slick) themed to the boutique palette.
+   Everything else lives in Tailwind classes. */
+
+.slick-dots {
+  bottom: 18px;
+}
+
+.slick-dots li button:before {
+  font-size: 8px;
+  color: #fbf8f3;
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #fbf8f3;
+  opacity: 1;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev {
+  left: 18px;
+}
+
+.slick-next {
+  right: 18px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 28px;
+  color: #fbf8f3;
+  opacity: 0.75;
+  text-shadow: 0 1px 8px rgba(43, 38, 33, 0.4);
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  opacity: 1;
+}
+
+/* Toasts */
+.Toastify__toast {
+  font-family: "Karla", ui-sans-serif, system-ui, sans-serif;
+  border-radius: 12px;
+  background: #fdfbf7;
+  color: #2b2621;
+  border: 1px solid #e4dacb;
+  box-shadow: 0 2px 4px rgba(43, 38, 33, 0.04),
+    0 20px 44px -20px rgba(43, 38, 33, 0.24);
+}
+
+.Toastify__toast-body {
+  font-size: 14px;
+}
+
+.Toastify__progress-bar {
+  background: #b8552f;
+}
+
+.Toastify__close-button {
+  color: #6b6259;
+  opacity: 0.6;
+}
