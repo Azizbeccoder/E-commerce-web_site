@@ -32,3 +32,6 @@ npm-debug.log*
 _to_delete/
 *.bak
 src_backup_before_redesign/
+setup-git.ps1
+commit-plan.md
+*.xlsx
